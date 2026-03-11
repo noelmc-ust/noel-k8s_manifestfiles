@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: studio-rs
+  namespace: noel-ns
+  labels:
+    app: studio
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: std
+  template:
+    metadata:
+      labels:
+        app: std
+    spec:
+      containers:
+        - name: studio-container1
+          image: nmc9812/studio:v1.1.0
+          ports:
+            - containerPort: 3000
