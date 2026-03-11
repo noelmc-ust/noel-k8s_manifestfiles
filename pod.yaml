@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ey-cart-pod
+  namespace: noel-ns
+  labels: 
+    app: ey-cart
+spec:
+  containers: 
+    - name: ey-cart-container
+      image: muralisocial123/ey-cart:v1.1.0
+      ports:
+        - containerPort: 3000  
