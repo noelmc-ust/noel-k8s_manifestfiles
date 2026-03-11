@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: photostudio-pod
+  namespace: noel-ns
+  labels:
+    app: studio-app
+spec:
+  containers:
+    - name: studio-container
+      image: nmc9812/studio:v1.1.0
+      ports:
+        - containerPort: 3000
+        
+      
