@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: ey-cart-rs
+  namespace: noel-ns
+  labels:
+    app: cart
+spec: # define the behaviour of RS
+  replicas: 3
+  selector: # defines how repliaset finds which to clone
+    matchLabels:
+      app: web
+  template: # it contains pod definitions
+    metadata: 
+      labels:
+        app: web
+    spec: # container definition
+      containers:
+        - name: ey-container1
+          image: muralisocial123/ey-cart:v1.1.0     
+          ports:
+            - containerPort: 3000
+  
