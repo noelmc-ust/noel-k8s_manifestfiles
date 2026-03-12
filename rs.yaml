@@ -17,7 +17,7 @@ spec: # define the behaviour of RS
     spec: # container definition
       containers:
         - name: fl-container
-          image: muralisocial123/ey-cart:v1.1.0    
+          image: muralisocial123/flipkart-app-web:v1.1.0    
           ports:
-            - containerPort: 3000
+            - containerPort: 80
   
