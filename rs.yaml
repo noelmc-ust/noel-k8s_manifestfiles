@@ -7,6 +7,11 @@ metadata:
     app: cart
 spec: # define the behaviour of RS
   replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector: # defines how repliaset finds which to clone
     matchLabels:
       app: web
