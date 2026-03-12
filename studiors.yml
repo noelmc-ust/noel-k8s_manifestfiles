@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: studio-container1
-          image: nmc9812/studio:v1.1.0
+          image: muralisocial123/ey-cart:v1.1.0 
           ports:
             - containerPort: 3000
