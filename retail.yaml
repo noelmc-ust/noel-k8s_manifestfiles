@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp
+  namespace: noel-ns
+  labels:
+    app: webapp1
+spec:
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+        - name: noelweb
+          image: nmc9812/noelweb:latest
+          ports:
+            - containerPort: 80
+
