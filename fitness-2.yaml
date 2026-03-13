@@ -40,5 +40,5 @@ spec:
     - port: 3001 # it is the port we use to expose hostport
       targetPort: 3000
       protocol: TCP
-  type: ClusterIP
+  type: NodePort
     
