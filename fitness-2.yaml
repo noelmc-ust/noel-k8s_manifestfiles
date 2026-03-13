@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: fitnessapp
+  namespace: noel-ns
+  labels:
+    app: web
+spec:
+  replicas: 8
+  selector:
+    matchLabels:
+      app: web
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 2
+      maxSurge: 2
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: fitnes-container
+          image: muralisocial123/transaction-app:v1.0.0
+          ports:
+            - containerPort: 3000    
