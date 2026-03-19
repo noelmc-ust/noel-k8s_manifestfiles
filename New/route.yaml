@@ -13,7 +13,7 @@ spec:
           value: /
       filters:
         - type: URLRewrite
-          URLRewrite:
+          urlRewrite:
             path:
               type: ReplacePrefixMatch
               ReplacePrefixMatch: /
