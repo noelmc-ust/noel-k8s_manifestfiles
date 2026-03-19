@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fitness-app
+  namespace: noel-ns
+  labels:
+    app: fitness
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: fitness
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: fitness
+    spec:
+      containers:
+        - name: fitness-container
+          image: muralisocial123/fitness-app:v1.0.1
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: fit-service
+  namespace: noel-ns
+spec:
+  selector:
+    app: fitness
+  ports:
+    - targetPort: 5000
+      port: 5001
+      protocol: TCP
+  type: ClusterIP
+  

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trans-app
+  namespace: noel-ns
+  labels:
+    app: trans
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: trans
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: trans
+    spec:
+      containers:
+        - name: trans-container
+          image: muralisocial123/transaction-app:v1.0.0
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: trans-service
+  namespace: noel-ns
+spec:
+  selector:
+    app: trans
+  ports:
+    - targetPort: 3000
+      port: 3001
+      protocol: TCP
+  type: ClusterIP
+  

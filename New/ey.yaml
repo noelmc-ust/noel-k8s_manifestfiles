@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eycart-app
+  namespace: noel-ns
+  labels:
+    app: ey
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: ey
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: ey
+    spec:
+      containers:
+        - name: ey-container
+          image: muralisocial123/ey-cart:v1.1.0
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata: 
+  name: eycart-service
+  namespace: noel-ns
+spec:
+  selector:
+    app: ey
+  ports:
+    - targetPort: 3000
+      port: 3002
+      protocol: TCP
+  type: ClusterIP
+  
