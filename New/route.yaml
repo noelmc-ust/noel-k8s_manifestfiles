@@ -1,0 +1,22 @@
+apiVersion: gateway.networking.k8s.io/vi
+kind: HTTPRoute
+metadata:
+  name: ey-route
+  namespace: noel-ns
+spec:
+  parentRefs:
+    name: noel-gateway
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /
+      filters:
+        - type: URLRewrite
+          URLRewrite:
+            path:
+              type: ReplacePrefixMatch
+              ReplacePrefixMatch: /
+      backendRefs:
+        - name: eycart-service
+          port: 3000
