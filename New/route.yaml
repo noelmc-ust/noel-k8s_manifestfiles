@@ -16,7 +16,7 @@ spec:
           urlRewrite:
             path:
               type: ReplacePrefixMatch
-              ReplacePrefixMatch: /
+              replacePrefixMatch: /
       backendRefs:
         - name: eycart-service
           port: 3000
@@ -41,7 +41,7 @@ spec:
           urlRewrite:
             path:
               type: ReplacePrefixMatch
-              ReplacePrefixMatch: /fitness
+              replacePrefixMatch: /fitness
       backendRefs:
         - name: fitness-service
           port: 5000
