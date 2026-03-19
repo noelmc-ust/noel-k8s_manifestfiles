@@ -41,7 +41,7 @@ spec:
           urlRewrite:
             path:
               type: ReplacePrefixMatch
-              replacePrefixMatch: /fitness
+              replacePrefixMatch: /
       backendRefs:
         - name: fitness-service
           port: 5001
