@@ -38,7 +38,7 @@ spec:
           value: /fitness
       filters:
         - type: URLRewrite
-          URLRewrite:
+          urlRewrite:
             path:
               type: ReplacePrefixMatch
               ReplacePrefixMatch: /fitness
