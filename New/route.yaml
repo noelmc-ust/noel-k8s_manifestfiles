@@ -45,3 +45,77 @@ spec:
       backendRefs:
         - name: fitness-service
           port: 5001
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: flipkart-route
+  namespace: noel-ns
+spec:
+  parentRefs:
+    - name: noel-gateway
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /flipkart
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: flipkart-service
+          port: 81
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: trans-route
+  namespace: noel-ns
+spec:
+  parentRefs:
+    - name: noel-gateway
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /trans
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: trans-service
+          port: 3001
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: flower-route
+  namespace: noel-ns
+spec:
+  parentRefs:
+    - name: noel-gateway
+  rules:
+    - matches:
+      - path:
+          type: PathPrefix
+          value: /flower
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: flower-service
+          port: 3016
