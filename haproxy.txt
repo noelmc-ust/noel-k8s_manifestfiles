@@ -1,0 +1,11 @@
+
+frontend k8s_gateway
+    bind *:80
+    stats uri /haproxy?stats  
+    default_backend photo_app_nodes
+
+
+backend photo_app_nodes
+    balance roundrobin
+    server node1 10.0.1.190:30384 check
+    server node2 10.0.1.47:30384 check
