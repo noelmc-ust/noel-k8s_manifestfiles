@@ -45,3 +45,28 @@ spec:
       backendRefs:
         - name: hospital-service
           port: 81
+
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: retail-route
+  namespace: noel-ns
+spec:
+  parentRefs:
+    - name: noel-gateway
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /retail
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplacePrefixMatch
+              replacePrefixMatch: /
+      backendRefs:
+        - name: capsule-service
+          port: 82
