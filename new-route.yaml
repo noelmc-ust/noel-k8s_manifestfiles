@@ -11,14 +11,9 @@ spec:
         - path:
             type: PathPrefix
             value: /fitness
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
       backendRefs:
         - name: fitness-tracker-service
+          namespace: fitness-app
           port: 80
 
 ---
@@ -36,14 +31,9 @@ spec:
         - path:
             type: PathPrefix
             value: /hms
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
       backendRefs:
         - name: hospital-service
+          namespace: hms-app
           port: 81
 
 ---
@@ -61,12 +51,7 @@ spec:
         - path:
             type: PathPrefix
             value: /retail
-      filters:
-        - type: URLRewrite
-          urlRewrite:
-            path:
-              type: ReplacePrefixMatch
-              replacePrefixMatch: /
       backendRefs:
         - name: capsule-service
+          namespace: retail-app
           port: 82
