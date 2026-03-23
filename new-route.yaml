@@ -11,6 +11,12 @@ spec:
         - path:
             type: PathPrefix
             value: /fitness
+      filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /
       backendRefs:
         - name: fitness-tracker-service
           namespace: fitness-app
@@ -31,6 +37,12 @@ spec:
         - path:
             type: PathPrefix
             value: /hms
+      filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /
       backendRefs:
         - name: hospital-service
           namespace: hms-app
@@ -51,6 +63,12 @@ spec:
         - path:
             type: PathPrefix
             value: /retail
+      filters:
+      - type: URLRewrite
+        urlRewrite:
+          path:
+            type: ReplacePrefixMatch
+            replacePrefixMatch: /
       backendRefs:
         - name: capsule-service
           namespace: retail-app
