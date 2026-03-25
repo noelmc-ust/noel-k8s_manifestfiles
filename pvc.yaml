@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: noel-pv
+spec:
+  capacity: 10Gi
+  accesmodes: 
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /var/nfs/general
+    server: 35.154.115.5
