@@ -3,7 +3,8 @@ kind: PersistentVolume
 metadata:
   name: noel-pv
 spec:
-  capacity: 10Gi
+  capacity: 
+    storage: 10Gi
   accesmodes: 
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
