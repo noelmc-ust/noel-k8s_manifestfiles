@@ -1,7 +1,7 @@
-apiVersionv: v1
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: noel-pvc
+  name: mongo-pvc
   namespace: fitness-app
 spec:
   accessModes:
